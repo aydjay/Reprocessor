@@ -4,9 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reprocessor"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        xmlns:models="clr-namespace:Reprocessor.Models"
+        mc:Ignorable="d" 
+        Title="MainWindow" Height="350" Width="525" Closing="MainWindow_OnClosing" d:DataContext="{d:DesignInstance local:MainWindowViewModel}" >
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <TextBox Text="{Binding UserInput}" MinWidth="50"></TextBox>
+            <Button Command="{Binding SearchCommand}">Search</Button>
+            <Button Command="{Binding EvaluateCommand}">Evaluate</Button>
+        </StackPanel>
+        <ListView ItemsSource="{Binding EveItems}" SelectedItem="{Binding SelectedItem}" x:Name="ListView">
+            <ListView.View>
+                <GridView>
+
+                    <GridViewColumn DisplayMemberBinding="{Binding TypeName}" Header="Item" Width="Auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding UnitCost}" Header="Unit Cost" Width="Auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding ReprocessCost}" Header="Reprocess Cost" Width="Auto" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
 </Window>
+
+
+
+
+
+
+
